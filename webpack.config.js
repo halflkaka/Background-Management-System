@@ -10,6 +10,14 @@ module.exports = {
 		publicPath: '/dist/',
 		filename: 'js/app.js'
 	},
+	resolve: {
+		alias : {
+			pages : path.resolve(__dirname, 'src/pages'),
+			component: path.resolve(__dirname, 'src/component'),
+			util: path.resolve(__dirname, 'src/util'),
+			service: path.resolve(__dirname, 'src/service')
+		}
+	},
 	module: {
     	rules: [
 			{
@@ -64,7 +72,8 @@ module.exports = {
     },
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './src/index.html'
+			template: './src/index.html',
+			favicon: './favicon.ico'
 		}),
 	 	new ExtractTextPlugin("css/[name].css"),
 	 	new webpack.optimize.CommonsChunkPlugin({
@@ -73,6 +82,19 @@ module.exports = {
 	 	})
 	 ],
 	 devServer: {
-	 	port: 5000
+	 	port: 5000,
+	 	historyApiFallback: {
+	 		index : '/dist/index.html'
+	 	},
+	 	proxy: {
+	 		'/manage' : {
+	 			target : 'http://admintest.happymmall.com',
+	 			changeOrigin : true
+	 		},
+	 		'/user/logout.do' : {
+	 			target : 'http://admintest.happymmall.com',
+	 			changeOrigin : true
+	 		}
+	 	}
 	 }
 };

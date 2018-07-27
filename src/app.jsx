@@ -1,14 +1,38 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { BrowserRouter as Router, Redirect, Switch, Route, Link} from 'react-router-dom';
 
-import 'font-awesome/css/font-awesome.min.css'
-import './index.css';
-import './index.scss';
+import Layout from 'component/layout/index.jsx';
+
+//page
+import Home from 'pages/home/index.jsx';
+import Login from 'pages/login/index.jsx';
+
+
+class App extends React.Component{
+	render(){
+		return (
+			<Router>
+				<Switch>
+					<Route path="/login" component={Login}/>
+					<Route path="/" render={props => (
+						<Layout>
+							<Switch>
+								<Route exact path="/" component={Home}/>
+								<Route path="/product" component={Home}/>
+								<Route path="/product-category" component={Home}/>
+							</Switch>
+						</Layout>
+					)}/>
+				</Switch>
+			</Router>
+		)
+	}
+}
 
 ReactDom.render(
-	<div>
-		<i className="fa fa-pied-piper-alt"></i>
-		<h1>Hello, world!</h1>,
-	</div>,
+	<App/>
+	,
 	document.getElementById('app')
 );
+
