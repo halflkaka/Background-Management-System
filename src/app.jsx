@@ -9,6 +9,7 @@ import Home from 'pages/home/index.jsx';
 import Login from 'pages/login/index.jsx';
 import ErrorPage from 'pages/error/index.jsx';
 import UserList from 'pages/user/index.jsx';
+import ProductRouter from 'pages/product/router.jsx';
 
 
 class App extends React.Component{
@@ -17,7 +18,7 @@ class App extends React.Component{
 		<Layout>
 			<Switch>
 				<Route exact path="/" component={Home}/>
-				<Route path="/product" component={Home}/>
+				<Route path="/product" component={ProductRouter}/>
 				<Route path="/product-category" component={Home}/>
 				<Route path="/user/index" component={UserList}/>
 				<Redirect exact from="/user" to="/user/index"/>
