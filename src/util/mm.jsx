@@ -32,6 +32,9 @@ class MUtil{
 		let result = queryString.match(reg);
 		return result? decodeURIComponent(result[2]) : null; 
 	}
+	successTips(msg){
+		alert(msg || 'Success!');
+	}
 	errorTips(msg) {
 		alert(msg || 'Error!');
 	}
