@@ -27,6 +27,15 @@ class Product {
 			data : productInfo
 		});
 	}
+	getCategoryList(parentCategoryId){
+		return  _mm.request({
+			type : 'post',
+			url : '/manage/category/get_category.do',
+			data : {
+				categoryId : parentCategoryId
+			}
+		}); 
+	}
 }
 
 export default Product;
