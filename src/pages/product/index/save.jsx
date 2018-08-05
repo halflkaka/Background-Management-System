@@ -6,6 +6,7 @@ import Product from 'service/product-service.jsx';
 import CagtegorySelector from './category-selector.jsx';
 
 import FileUploader from 'util/file-uploader/index.jsx';
+import RichEditor from 'util/rich-editor/index.jsx';
 import './save.scss';
 
 const _mm = new MUtil();
@@ -35,12 +36,17 @@ class ProductSave extends React.Component{
 		_mm.errorTips(err);
 	}
 	onImageDelete(e){
-		let index = e.target.index;
+		let index = parseInt(e.target.getAttribute('index'));
 		let subImages = this.state.subImages;
 		subImages.splice(index, 1);
 		this.setState({
 			subImages : subImages
 		});
+	}
+	onRichEditorChange(value){
+		this.setState({
+			detail: value
+		})
 	}
 	render(){
 		return (
@@ -103,7 +109,7 @@ class ProductSave extends React.Component{
 					  <div className="form-group">
 					    <label className="col-md-2 control-label">Details</label>
 					    <div className="col-md-10">
-						    xxx
+						    <RichEditor onValueChange={(value)=>this.onRichEditorChange(value)}/>
 					    </div>
 					  </div>
 					  <div className="form-group">
