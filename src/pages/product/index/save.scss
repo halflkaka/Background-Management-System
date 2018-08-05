@@ -1,6 +1,8 @@
+$sub-img-size : 80px;
 .img-con{
-	width: 80px;
-	height: 80px;
+	position: relative;
+	width: $sub-img-size;
+	height: $sub-img-size;
 	float: left;
 	margin-right: 10px;
 	border: 1px solid #ccc;
@@ -17,11 +19,18 @@
 		left: 0;
 		right: 0;
 		cursor: pointer;
-		display: block;
+		display: none;
 		text-align: center;
+		height: $sub-img-size;
+		line-height: $sub-img-size;
 		font-size: 50px;
 		color: #aaa;
 		background: rgba(0,0,0, .2) ;
+	}
+	&:hover{
+		.fa-close{
+			display: block;
+		}
 	}
 }
 
