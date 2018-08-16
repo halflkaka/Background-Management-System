@@ -20,6 +20,59 @@ class Product {
 			data : data
 		});
 	}
+	getProduct(productId){
+        return _mm.request({
+            type    : 'post',
+            url     : '/manage/product/detail.do',
+            data    : {
+                productId : productId || 0
+            }
+        });
+    }
+	checkProduct(product){
+		let result = {
+			status: true,
+			msg:'Verified successfully'
+		};
+		if (typeof product.name !== 'string' || product.name.length === 0) {
+			return {
+				status: false,
+				msg: 'Name can not be null'
+			};
+		}
+		if (typeof product.subtitle !== 'string' || product.subtitle.length === 0) {
+			return {
+				status: false,
+				msg: 'Subtitle can not be null'
+			};
+		}
+		if (typeof product.price !== 'number' || !(product.price >= 0)) {
+			return {
+				status: false,
+				msg: 'Price must be a positive number'
+			};
+		}
+		if (typeof product.stock !== 'number' || !(product.stock >= 0)) {
+			return {
+				status: false,
+				msg: 'Stock must be a positive number'
+			};
+		}
+		if (typeof product.categoryId !== 'number' || !(product.categoryId > 0)) {
+			return {
+				status: false,
+				msg: 'Please choose a category'
+			};
+		}
+		return result;
+	}
+	saveProduct(product){
+		return  _mm.request({
+			type : 'post',
+			url : '/manage/product/save.do',
+			data : product
+		});
+	}
 	setProductStatus(productInfo){
 		return  _mm.request({
 			type : 'post',
