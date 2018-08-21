@@ -93,7 +93,7 @@ class ProductSave extends React.Component{
 	render(){
 		return (
 				<div id="page-wrapper">
-					<PageTitle title="Add product"/>
+					<PageTitle title={this.state.id ? 'Edit product': 'Add product'}/>
 					<div className="form-horizontal">
 					  <div className="form-group">
 					    <label className="col-md-2 control-label">Name</label>
